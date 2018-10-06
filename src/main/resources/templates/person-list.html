@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymelef.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .even{
+            background-color: antiquewhite;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<table class="table">
+    <tr>
+        <th>№</th>
+        <th>FirstName</th>
+        <th>SecondName</th>
+        <th>MiddleName</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="person,iter : ${persons}" >
+        <td scope="col" th:utext="${iter.index + 1 } + '.'">...</td>
+        <td scope="col" th:utext="${person.firstName}">...</td>
+        <td scope="col" th:utext="${person.secondName}">...</td>
+        <td scope="col" th:utext="${person.middleName}">...</td>
+        <td scope="col" th:utext="${person.email}">...</td>
+        <td scope="col" align="center" nowrap="nowrap">
+            <a th:href="@{/person-edit(id=${person.id})}">EDIT</a>
+        </td>
+        <td width="50" align="center" nowrap="nowrap">
+            <a th:href="@{/person-remove(id=${person.id})}">REMOVE</a>
+        </td>
+    </tr>
+</table>
+<br/>
+<form method="get" action="/person-create">
+    <button class="btn btn-outline-dark" type="submit">CREATE</button>
+</form>
+</body>
+</html>

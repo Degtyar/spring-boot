@@ -13,8 +13,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@GetMapping("/")
-	public String hello() {
-		return "<h1> HELLO WORLD </h1>";
-	}
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymelef.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PERSON-EDIT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+    <form th:action="@{/person-save}" th:object="${person}" method="post">
+        <table class="table">
+            <tr>
+                <td scope="col" >ID:</td>
+                <td scope="col" ><input type="text" th:field="*{id}"/></td>
+            </tr>
+            <tr>
+                <td scope="col" >
+                    First Name:
+                </td>
+                <td scope="col" >
+                    <input type="text" th:field="*{firstName}"/>
+                </td >
+            </tr>
+            <tr>
+                <td scope="col" >
+                    Second Name:
+                </td>
+                <td scope="col" >
+                    <input type="text" th:field="*{secondName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td scope="col" >
+                    Middle Name:
+                </td>
+                <td scope="col" >
+                    <input type="text" th:field="*{middleName}"/>
+                </td>
+            </tr>
+            <tr>
+                <td scope="col" >
+                    Email:
+                </td>
+                <td scope="col" >
+                    <input type="text" th:field="*{email}"/>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <button class="btn btn-outline-dark" type="submit">SAVE</button>
+    </form>
+</body>
+</html>
