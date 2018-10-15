@@ -1,0 +1,104 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xl="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://degtyar.ru/springboot/soap/person"
+           targetNamespace="http://degtyar.ru/springboot/soap/person"
+           elementFormDefault="qualified">
+    <xs:complexType name="personRecord">
+        <xs:sequence>
+            <xs:element name = "id" type = "xs:string"/>
+            <xs:element name = "firstName" type = "xs:string"/>
+            <xs:element name = "middleName" type = "xs:string"/>
+            <xs:element name = "secondName" type = "xs:string"/>
+            <xs:element name = "email" type = "xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="resultRecord">
+        <xs:sequence>
+            <xl:element name = "succes" type="xs:boolean"/>
+            <xl:element name = "message" type = "xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="testRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="testResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "succes" type="xs:boolean"/>
+                <xl:element name = "message" type = "xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pingRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "succes" type="xs:boolean"/>
+                <xl:element name = "message" type = "xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createPersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name = "firstName" type = "xs:string"/>
+                <xs:element name = "middleName" type = "xs:string"/>
+                <xs:element name = "secondName" type = "xs:string"/>
+                <xs:element name = "email" type = "xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "succes" type="xs:boolean"/>
+                <xl:element name = "message" type = "xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="removePersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="removePersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "succes" type="xs:boolean"/>
+                <xl:element name = "message" type = "xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getPersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xl:element name = "rows" type="tns:personRecord" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="mark">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EXCELLENTLY"/>
+            <xs:enumeration value="PERFECTLY"/>
+            <xs:enumeration value="PASSABLE"/>
+            <xs:enumeration value="NOT_PASSABLE"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

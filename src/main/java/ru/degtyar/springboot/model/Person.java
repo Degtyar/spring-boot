@@ -1,14 +1,30 @@
 package ru.degtyar.springboot.model;
 
+import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
-
+@Entity
 public class Person {
 
+    @Id
+    @NonNull
     private String id = UUID.randomUUID().toString();
+
+    @Column
     private String firstName;
+
+    @Column
     private String middleName;
+
+    @Column
     private String secondName;
+
+    @Column
     private String email;
 
     public Person(){}
