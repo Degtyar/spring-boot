@@ -2,6 +2,7 @@ package ru.degtyar.springboot.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,6 +11,7 @@ import ru.degtyar.springboot.model.Person;
 import ru.degtyar.springboot.repository.PersonRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,12 +19,51 @@ import java.util.Optional;
 @Transactional
 public class PersonService {
 
-
     @Autowired
     private PersonRepository personRepository;
 
-    public Iterable<Person> findAll(Sort sort) {
+    public List<Person> findAll() {
+        return personRepository.findAll();
+    }
+
+    public List<Person> findAll(Sort sort) {
         return personRepository.findAll(sort);
+    }
+
+    public List<Person> findAllById(Iterable<String> iterable) {
+        return personRepository.findAllById(iterable);
+    }
+
+    public <S extends Person> List<S> saveAll(Iterable<S> iterable) {
+        return personRepository.saveAll(iterable);
+    }
+
+    public void flush() {
+        personRepository.flush();
+    }
+
+    public <S extends Person> S saveAndFlush(S s) {
+        return personRepository.saveAndFlush(s);
+    }
+
+    public void deleteInBatch(Iterable<Person> iterable) {
+        personRepository.deleteInBatch(iterable);
+    }
+
+    public void deleteAllInBatch() {
+        personRepository.deleteAllInBatch();
+    }
+
+    public Person getOne(String s) {
+        return personRepository.getOne(s);
+    }
+
+    public <S extends Person> List<S> findAll(Example<S> example) {
+        return personRepository.findAll(example);
+    }
+
+    public <S extends Person> List<S> findAll(Example<S> example, Sort sort) {
+        return personRepository.findAll(example, sort);
     }
 
     public Page<Person> findAll(Pageable pageable) {
@@ -33,24 +74,12 @@ public class PersonService {
         return personRepository.save(s);
     }
 
-    public <S extends Person> Iterable<S> saveAll(Iterable<S> iterable) {
-        return personRepository.saveAll(iterable);
-    }
-
     public Optional<Person> findById(String s) {
         return personRepository.findById(s);
     }
 
     public boolean existsById(String s) {
         return personRepository.existsById(s);
-    }
-
-    public Iterable<Person> findAll() {
-        return personRepository.findAll();
-    }
-
-    public Iterable<Person> findAllById(Iterable<String> iterable) {
-        return personRepository.findAllById(iterable);
     }
 
     public long count() {
@@ -71,5 +100,21 @@ public class PersonService {
 
     public void deleteAll() {
         personRepository.deleteAll();
+    }
+
+    public <S extends Person> Optional<S> findOne(Example<S> example) {
+        return personRepository.findOne(example);
+    }
+
+    public <S extends Person> Page<S> findAll(Example<S> example, Pageable pageable) {
+        return personRepository.findAll(example, pageable);
+    }
+
+    public <S extends Person> long count(Example<S> example) {
+        return personRepository.count(example);
+    }
+
+    public <S extends Person> boolean exists(Example<S> example) {
+        return personRepository.exists(example);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
@@ -17,9 +18,10 @@ import javax.validation.constraints.NotNull;
 
 @EnableWs
 @Configuration
+@EnableJpaRepositories(basePackages = {"ru.degtyar.springboot"})
 public class WebServiceConfig extends WsConfigurerAdapter {
     @NotNull
-    private static final String WS_MAPPING  = "/soap/*";
+    private static final String WS_MAPPING  = "/soap/";
 
     @Bean
     public ServletRegistrationBean dispatcherServlet(ApplicationContext applicationContext){
@@ -28,7 +30,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         servlet.setTransformWsdlLocations(true);
         return new ServletRegistrationBean(servlet, WS_MAPPING);
     }
-    @Bean(name = "PersonSer")
+    @Bean(name = "PersonService")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema endpointSchema){
         final DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName(PersonEndpoint.PORT_TYPE_NAME);

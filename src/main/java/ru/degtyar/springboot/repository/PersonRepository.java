@@ -1,13 +1,13 @@
 package ru.degtyar.springboot.repository;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.degtyar.springboot.model.Person;
 
+import javax.transaction.Transactional;
+
 @Repository
-@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-public interface PersonRepository extends PagingAndSortingRepository<Person, String>{
+@Transactional
+public interface PersonRepository extends JpaRepository<Person, String> {
 
 }
