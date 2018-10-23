@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 import ru.degtyar.springboot.model.Person;
 
 import javax.annotation.PostConstruct;
+import java.nio.file.Files;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -27,6 +29,16 @@ public class PersonRepository {
     @NonNull
     public Collection<Person> getPerson(){
         return persons.values();
+    }
+
+    public Person personFindByFirstName(final String name){
+        if (name == null || name.isEmpty()) return null;
+        for (Person person: getPerson()){
+            if(name.equals(person.getFirstName())){
+                return person;
+            }
+        }
+        return null;
     }
 
     @PostConstruct
